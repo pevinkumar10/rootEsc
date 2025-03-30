@@ -1,4 +1,4 @@
-# Privilege Escalation Analysis Tool
+# RootESC the privilege Escalation Analysis Tool
 
 ## Overview
 The tool rootESC is a privilege escalation analysis tool created by **Pevinkumar A** to find privilege escalation vector .
