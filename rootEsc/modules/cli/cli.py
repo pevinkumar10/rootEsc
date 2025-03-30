@@ -1,8 +1,6 @@
 import sys
 import argparse
 import requests
-from random import choice
-from art import text2art 
 from colorama import Fore,Style 
 
 red=Fore.RED
@@ -23,8 +21,7 @@ class CommandLine():
         # Function to parse arguments.
         parser=argparse.ArgumentParser(add_help=False,usage=argparse.SUPPRESS,exit_on_error=False)
         try:
-            parser.add_argument("-nl","--no-logging",action="store_true")
-            parser.add_argument("-nc","--no-colours",action="store_true")
+            parser.add_argument("-nb","--no-banner",action="store_true")
             parser.add_argument("-v","--version",action="store_true")
             parser.add_argument("-h","--help",action="store_true")
             
@@ -50,8 +47,7 @@ class CommandLine():
                     
                 [{reset}{bold}{blue}Filters{reset}{bold}{white}]{reset}
                 
-                    -nl,   --no-logging             :  It will disable the logging
-                    -nc,   --no-colours             :  It will disable the logging  
+                    -nb,   --no-banner              :  It will disable the printing banner.
                         
                 {bold}{white}[{reset}{bold}{blue}Debug{reset}{bold}{white}]{reset}
                     
