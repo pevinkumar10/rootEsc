@@ -57,7 +57,7 @@ The tool rootESC is a privilege escalation analysis tool created by **Pevinkumar
 Clone the repository and make the script executable:
 ```bash
 git clone https://github.com/PkTheHacker10/rootEsc.git
-cd rootEsc
+cd rootEsc/rootEsc
 ```
 
 ## Usage
