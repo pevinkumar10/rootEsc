@@ -15,7 +15,7 @@ class RootEsc():
         # Core funtion that starts the rootESC.
 
         # Checking for no banner flag.
-        if not self.cli.args().no_logging:
+        if not self.cli.args().no_colours:
             print(f"""{red}
     ░▒▓███████▓▒░ ░▒▓██████▓▒░ ░▒▓██████▓▒░▒▓████████▓▒░▒▓████████▓▒░░▒▓███████▓▒░░▒▓██████▓▒░  
     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░ 
@@ -29,6 +29,14 @@ class RootEsc():
                                                                         Author  : {green}Pevinkumar A {reset}
                                                                         Version : {green}v1.1 {reset}                                                                                   
 """)
+
+        if self.cli.args().help:
+            print(self.cli.help())
+            exit()
+
+        if self.cli.args().version:
+            print(self.cli.get_version())
+            exit()
 
         root_esc_core=RootEscCore()
         root_esc_core.start()

@@ -43,8 +43,8 @@ class CommandLine():
     def help(self):
         # Funtion to create and return the available options and flags.
         return f"""\n
-    {bold}{white}[{reset}{bold}{blue}DESCRIPTION{reset}{white}]{reset}: {white}{bold}rootEsc{reset} {white}is a tool which is purely developed for Linux privilege escalation analysis by {reset}{bold}{green}PkTheHacker10{reset}.\n
-        {bold}{white}[{reset}{bold}{blue}Usage{reset}{white}]{reset}: ./{sys.argv[0]} \n
+    {bold}{white}[{reset}{bold}{blue}DESCRIPTION{reset}{white}]{reset}: {white}{bold}rootEsc{reset} {white}is a tool which is purely developed for Linux privilege escalation analysis by {reset}{bold}{green}Pevinkumar A{reset}.\n
+        {bold}{white}[{reset}{bold}{blue}Usage{reset}{white}]{reset}: python3 {sys.argv[0]} \n
                 {white}rootEsc {bold}{white}[{reset}{bold}{blue}Flags{reset}{bold}{white}]\n
         [{reset}{bold}{blue}Flags{reset}{bold}{white}]
                     
@@ -69,7 +69,7 @@ class CommandLine():
                 latest=json_data.get('tag_name')
                 return latest
             else:
-                return "v1.1"
+                return "The rootESC tool is currently running in the version of v1.1"
             
         except (requests.ConnectTimeout,requests.ReadTimeout,requests.Timeout):
             print(f"{bright}{blue}\n [+] {reset} : Connection TimeOut while getting version.")

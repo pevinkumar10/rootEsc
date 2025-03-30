@@ -1,5 +1,5 @@
 try:
-    from colorama import Fore,Style
+    from colorama import Fore,Style,Back
     from modules.cli.cli import CommandLine
     from modules.utils.utility import load_files,load_folders,run_command,get_current_working_dir
     
@@ -10,7 +10,12 @@ red=Fore.RED
 green=Fore.GREEN
 blue=Fore.BLUE
 bold=Style.BRIGHT
+magenta=Fore.MAGENTA
 yellow=Fore.YELLOW
+black=Fore.BLACK
+
+Bblue=Back.BLUE
+
 reset=Style.RESET_ALL
 
 # Path to the scripts.
@@ -30,12 +35,16 @@ class RootEscCore():
             system_analysis_dir = all_folders[0]
             # Gathering all scripts that is inside in the scripts/1_system directory. 
             scripts = sorted(load_files(SCRIPTS_DIR + system_analysis_dir + "/"))
-            print(f"\n{blue}       ═══════════════{reset} System enumeration started {blue}═══════════════{reset}")
-            
+            print(f"\n{blue}       ═══════════════{reset}{Bblue}{black} System enumeration started {reset}{blue}═══════════════{reset}")
             # Executing all the scripts that is inside in the scripts/1_system one by one.
-            for script in scripts:
-                print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
-                run_command(SCRIPTS_DIR + system_analysis_dir + "/" + script)
+            try:
+                for script in scripts:
+                    print(f"{green}\n[ ✓ ]{reset}{magenta} Enumerating {script.split(".")[0].split("_")[1]} : {reset}")
+                    run_command(SCRIPTS_DIR + system_analysis_dir + "/" + script)
+            
+            except KeyboardInterrupt:
+                print(f"{green}\n[ ! ]{reset} Exiting from rootESC")
+                exit()
 
         except Exception as Ue:
             print(f"{red}[ ! ]{reset} Unexpected Error [Core.system_enumerator] : {Ue}")
@@ -49,12 +58,17 @@ class RootEscCore():
             files_analysis_dir = all_folders[1]
             # Gathering all scripts that is inside in the scripts/2_files directory.
             scripts = sorted(load_files(SCRIPTS_DIR + files_analysis_dir + "/"))
-            print(f"\n{blue}       ═══════════════{reset} Files enumeration started {blue}═══════════════{reset}")
+            print(f"\n{blue}       ═══════════════{reset}{Bblue}{black}  Files enumeration started {reset}{blue}═══════════════{reset}")
 
             # Executing all the scripts that is inside in the scripts/1_files one by one.
-            for script in scripts:
-                print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
-                run_command(SCRIPTS_DIR + files_analysis_dir + "/" + script)
+            try:
+                for script in scripts:
+                    print(f"{green}\n[ ✓ ]{reset}{magenta} Enumerating {script.split(".")[0].split("_")[1]} : {reset}")
+                    run_command(SCRIPTS_DIR + files_analysis_dir + "/" + script)
+
+            except KeyboardInterrupt:
+                print(f"{green}\n[ ! ]{reset} Exiting from rootESC")
+                exit()
 
         except Exception as Ue:
             print(f"{red}[ ! ]{reset} Unexpected Error [Core.file_enumerator] : {Ue}")
@@ -68,12 +82,17 @@ class RootEscCore():
             process_analysis_dir = all_folders[2]
             # Gathering all scripts that is inside in the scripts/3_process directory.
             scripts = sorted(load_files(SCRIPTS_DIR + process_analysis_dir + "/"))
-            print(f"\n{blue}       ═══════════════{reset} Process enumeration started {blue}═══════════════{reset}")
+            print(f"\n{blue}       ═══════════════{reset}{Bblue}{black}  Process enumeration started {reset}{blue}═══════════════{reset}")
 
             # Executing all the scripts that is inside in the scripts/2_process one by one.
-            for script in scripts:
-                print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
-                run_command(SCRIPTS_DIR + process_analysis_dir + "/" + script)
+            try:
+                for script in scripts:
+                    print(f"{green}\n[ ✓ ]{reset}{magenta} Enumerating {script.split(".")[0].split("_")[1]} : {reset}")
+                    run_command(SCRIPTS_DIR + process_analysis_dir + "/" + script)
+
+            except KeyboardInterrupt:
+                print(f"{green}\n[ ! ]{reset} Exiting from rootESC")
+                exit()
 
         except Exception as Ue:
             print(f"{red}[ ! ]{reset} Unexpected Error [Core.process_enumerator] : {Ue}")
@@ -87,12 +106,17 @@ class RootEscCore():
             network_analysis_dir = all_folders[3]
             # Specifying system enumeration script directory [ 3 = 4_process ]
             scripts = sorted(load_files(SCRIPTS_DIR + network_analysis_dir + "/"))
-            print(f"\n{blue}       ═══════════════{reset} Network enumeration started {blue}═══════════════{reset}")
+            print(f"\n{blue}       ═══════════════{reset}{Bblue}{black} Network enumeration started {reset}{blue}═══════════════{reset}")
             
             # Executing all the scripts that is inside in the scripts/4_network one by one.
-            for script in scripts:
-                print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
-                run_command(SCRIPTS_DIR + network_analysis_dir + "/" + script)
+            try:
+                for script in scripts:
+                    print(f"{green}\n[ ✓ ]{reset}{magenta} Enumerating {script.split(".")[0].split("_")[1]} : {reset}")
+                    run_command(SCRIPTS_DIR + network_analysis_dir + "/" + script)
+
+            except KeyboardInterrupt:
+                print(f"{green}\n[ ! ]{reset} Exiting from rootESC")
+                exit()
 
         except Exception as Ue:
             print(f"{red}[ ! ]{reset} Unexpected Error [Core.network_enumerator] : {Ue}")
@@ -106,12 +130,17 @@ class RootEscCore():
             log_analysis_dir = all_folders[4]
             # Executing all the scripts that is inside in the scripts/5_log one by one.
             scripts = sorted(load_files(SCRIPTS_DIR + log_analysis_dir + "/"))
-            print(f"\n{blue}       ═══════════════{reset} Log enumeration started {blue}═══════════════{reset}")
+            print(f"\n{blue}       ═══════════════{reset}{Bblue}{black}  Log enumeration started {reset}{blue}═══════════════{reset}")
 
             # Executing all the scripts that is inside in the scripts/5_log one by one.
-            for script in scripts:
-                print(f"{green}\n[ ✓ ]{reset} Enumerating {script.split(".")[0].split("_")[1]} :")
-                run_command(SCRIPTS_DIR + log_analysis_dir + "/" + script)
+            try:
+                for script in scripts:
+                    print(f"{green}\n[ ✓ ]{reset}{magenta} Enumerating {script.split(".")[0].split("_")[1]} : {reset}")
+                    run_command(SCRIPTS_DIR + log_analysis_dir + "/" + script)
+
+            except KeyboardInterrupt:
+                print(f"{green}\n[ ! ]{reset} Exiting from rootESC")
+                exit()
 
         except Exception as Ue:
             print(f"{red}[ ! ]{reset} Unexpected Error [Core.log_enumerator] : {Ue}")
