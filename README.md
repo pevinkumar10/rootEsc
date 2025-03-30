@@ -63,6 +63,10 @@ cd rootEsc/rootEsc
 ## Usage
 Run the tool as a normal user:
 ```bash
+python3 rootESC.py
+```
+To see additional information:
+```bash
 python3 rootESC.py -h
 ```
 
