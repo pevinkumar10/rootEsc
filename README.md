@@ -1,7 +1,7 @@
 # Privilege Escalation Analysis Tool
 
 ## Overview
-The Privilege Escalation Analysis Tool is designed to assist security professionals in auditing Linux systems for potential privilege escalation vectors. It automates system enumeration, identifying misconfigurations, vulnerable binaries, and other security risks.
+The tool rootESC is a privilege escalation analysis tool created by **Pevinkumar A** to find privilege escalation vector .
 
 ## Features
 - **User & Group Enumeration**: Lists all system users and groups, including current user privileges.
@@ -12,7 +12,47 @@ The Privilege Escalation Analysis Tool is designed to assist security profession
 - **Cron Job Analysis**: Identifies scheduled jobs running as root or other users.
 - **Capabilities Enumeration**: Lists Linux capabilities assigned to binaries.
 - **Process Analysis**: Identifies high-CPU consuming processes, processes running as root, and suspicious locations.
-
+## Tool structure 
+```
+.
+├── README.md
+└── rootEsc
+    ├── modules                      # This folder contains Modules that are required by rootESC. 
+    │   ├── cli
+    │   │   ├── cli.py
+    │   │   └── __init__.py
+    │   ├── core.py                  # This the file contains core logic and functions of the rootESC. 
+    │   ├── __init__.py
+    │   ├── scripts                  # It contains all the scripts that is used to enumerate privilege escalation vectors.
+    │   │   ├── 1_system
+    │   │   │   ├── 01_Id.sh
+    │   │   │   ├── 02_Uname.sh
+    │   │   │   ├── 03_SudoVersion.sh
+    │   │   │   ├── 04_SudoPrivCheck.sh
+    │   │   │   ├── 05_AllUsers.sh
+    │   │   │   └── 06_RootUser.sh
+    │   │   ├── 2_files
+    │   │   │   ├── 07_SUID.sh
+    │   │   │   ├── 08_SGID.sh
+    │   │   │   ├── 09_WritableEnvDir.sh
+    │   │   │   ├── 10_CronJobs.sh
+    │   │   │   └── 11_Capability.sh
+    │   │   ├── 3_process
+    │   │   │   ├── 12_CpuConsumingProcesses.sh
+    │   │   │   ├── 13_ProccessWithSuspiciousLocations.sh
+    │   │   │   └── 14_ProcRunningAsRoot.sh
+    │   │   ├── 4_network
+    │   │   │   └── 15_UnusualNetworkCon.sh
+    │   │   └── 5_log
+    │   │       └── 16_FailedPasswordAttempt.sh
+    │   └── utils                  # Utility file. 
+    │       └── utility.py
+    └── rootEsc.py                  
+```
+## Language used 
+- Python
+- Bash
+  
 ## Installation
 Clone the repository and make the script executable:
 ```bash
@@ -52,7 +92,7 @@ Sudoers audit plugin version 1.9.15p5
 ```
 
 ## Disclaimer
-This tool is intended for security research and educational purposes only. Use it only on systems you own or have explicit permission to test.
+This tool is intended for security research ,educational purposes only ,to understand the privilege escalation vectors and how the standard tool like linpeas ,winpeas is working not for **Reinventing the wheel**.  
 
 ## License
 MIT License. See `LICENSE` for details.
