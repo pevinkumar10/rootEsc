@@ -1,103 +1,143 @@
-# RootESC the privilege Escalation Analysis Tool
+<h1 align="center">RootESC</h1>
 
-## Overview
-The tool rootESC is a privilege escalation analysis tool created by **Pevinkumar A** to find privilege escalation vector .
+<p align="center">
+  A Linux privilege escalation analysis tool designed to identify potential attack vectors in system environments.
+</p>
 
-## Features
-- **User & Group Enumeration**: Lists all system users and groups, including current user privileges.
-- **Kernel & System Information**: Displays OS version, kernel version, and system architecture.
-- **SUID & SGID Binary Detection**: Identifies binaries with elevated privileges.
-- **Sudo Privileges Check**: Lists available `sudo` privileges for the current user.
-- **Writable Directories & Files**: Detects writable directories and files that could be abused.
-- **Cron Job Analysis**: Identifies scheduled jobs running as root or other users.
-- **Capabilities Enumeration**: Lists Linux capabilities assigned to binaries.
-- **Process Analysis**: Identifies high-CPU consuming processes, processes running as root, and suspicious locations.
-## Tool structure 
+<p align="center">
+  <img src="https://img.shields.io/badge/Language-Python-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Scripting-Bash-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Focus-Privilege%20Escalation-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Platform-Linux-yellow?style=for-the-badge" />
+</p>
+
+---
+
+## 📌 Overview
+
+**RootESC** is a security analysis tool created by **Pevinkumar A** to enumerate and detect possible privilege escalation vectors in Linux systems.
+
+It helps security researchers understand:
+- Misconfigurations
+- Weak permissions
+- Privilege escalation paths
+
+---
+
+## ✨ Features
+
+### 🧑‍💻 System Enumeration
+- User & group listing
+- OS & kernel information
+- System architecture detection
+
+### 🔐 Privilege Analysis
+- Sudo privileges inspection
+- SUID & SGID binary detection
+- Linux capabilities enumeration
+
+### 📁 File System Analysis
+- Writable files & directories detection
+- Cron job analysis for root-level tasks
+
+### ⚙️ Process Inspection
+- Root-owned process detection
+- Suspicious process location checks
+- High CPU process monitoring
+
+### 🌐 Network & Logs
+- Unusual network connection detection
+- Failed login attempt analysis
+
+---
+
+## 📂 Tool Structure
+
 ```
-.
-├── README.md
-└── rootEsc
-    ├── modules                      # This folder contains Modules that are required by rootESC. 
-    │   ├── cli
-    │   │   ├── cli.py
-    │   │   └── __init__.py
-    │   ├── core.py                  # This the file contains core logic and functions of the rootESC. 
-    │   ├── __init__.py
-    │   ├── scripts                  # It contains all the scripts that is used to enumerate privilege escalation vectors.
-    │   │   ├── 1_system
-    │   │   │   ├── 01_Id.sh
-    │   │   │   ├── 02_Uname.sh
-    │   │   │   ├── 03_SudoVersion.sh
-    │   │   │   ├── 04_SudoPrivCheck.sh
-    │   │   │   ├── 05_AllUsers.sh
-    │   │   │   └── 06_RootUser.sh
-    │   │   ├── 2_files
-    │   │   │   ├── 07_SUID.sh
-    │   │   │   ├── 08_SGID.sh
-    │   │   │   ├── 09_WritableEnvDir.sh
-    │   │   │   ├── 10_CronJobs.sh
-    │   │   │   └── 11_Capability.sh
-    │   │   ├── 3_process
-    │   │   │   ├── 12_CpuConsumingProcesses.sh
-    │   │   │   ├── 13_ProccessWithSuspiciousLocations.sh
-    │   │   │   └── 14_ProcRunningAsRoot.sh
-    │   │   ├── 4_network
-    │   │   │   └── 15_UnusualNetworkCon.sh
-    │   │   └── 5_log
-    │   │       └── 16_FailedPasswordAttempt.sh
-    │   └── utils                  # Utility file. 
-    │       └── utility.py
-    └── rootEsc.py                  
-```
-## Language used 
-- Python
-- Bash
-  
-## Installation
-Clone the repository and make the script executable:
-```bash
+
+rootEsc/
+├── modules/
+│   ├── cli/
+│   ├── core.py
+│   ├── scripts/
+│   │   ├── 1_system/
+│   │   ├── 2_files/
+│   │   ├── 3_process/
+│   │   ├── 4_network/
+│   │   └── 5_log/
+│   └── utils/
+└── rootEsc.py
+
+````
+
+---
+
+## ⚙️ Installation
+
+### 📥 Clone Repository
+```bash id="q3p5vo"
 git clone https://github.com/PkTheHacker10/rootEsc.git
 cd rootEsc/rootEsc
+````
+
+---
+
+## 🚀 Usage
+
+### ▶️ Run Tool
+
+```bash id="zq9d8k"
+python3 rootEsc.py
 ```
 
-## Usage
-Run the tool as a normal user:
-```bash
-python3 rootESC.py
-```
-To see additional information:
-```bash
-python3 rootESC.py -h
+### 📖 Help Menu
+
+```bash id="1k3v2a"
+python3 rootEsc.py -h
 ```
 
-## Output
-The tool will generate a structured report displaying:
-- System information
-- User privileges
-- Writable files and directories
-- Running processes
-- Potential privilege escalation paths
+---
 
-## Example Output
-```
+## 📊 Output
+
+RootESC generates a structured security report including:
+
+* System information
+* User privileges
+* Writable targets
+* Running processes
+* Privilege escalation vectors
+
+---
+
+## 🧪 Example Output
+
+```bash id="x8v1lm"
 [ ✓ ] Enumerating Id :
-uid=1000(user1) gid=1000(users) groups=1000(users),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),101(lxd)
+uid=1000(user1) gid=1000(users) groups=1000(users),4(adm),27(sudo)
 
 [ ✓ ] Enumerating Uname :
-Linux user1 6.8.0-51-generic #52-Ubuntu SMP PREEMPT_DYNAMIC Thu Dec  5 13:09:44 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+Linux user1 6.8.0-51-generic x86_64 GNU/Linux
 
 [ ✓ ] Enumerating SudoVersion :
 Sudo version 1.9.15p5
 Sudoers policy plugin version 1.9.15p5
-Sudoers file grammar version 50
-Sudoers I/O plugin version 1.9.15p5
-Sudoers audit plugin version 1.9.15p5
-
 ```
 
-## Disclaimer
-This tool is intended for security research ,educational purposes only ,to understand the privilege escalation vectors and how the standard tool like linpeas ,winpeas is working not for **Reinventing the wheel**.  
+---
 
-## License
-MIT License. See `LICENSE` for details.
+## ⚠️ Disclaimer
 
+This tool is intended for:
+
+* Educational purposes
+* Security research
+* Understanding privilege escalation techniques
+
+It is **not intended for unauthorized system access** or misuse.
+
+---
+
+## 📜 License
+
+MIT License © PevinKumar A
